@@ -1,0 +1,6 @@
+<p>Number of questions:{{questions?.length}}</p>
+<ul>
+  <li *ngFor="let question of questions">
+    <questions-listitem [question]="question"></questions-listitem>
+  </li>
+</ul>

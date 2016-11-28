@@ -1,0 +1,421 @@
+[
+  {
+    "name": "AppModule",
+    "file": "src/app/app.module.ts",
+    "providers": [
+      {
+        "name": "QuestionsService"
+      }
+    ],
+    "declarations": [
+      {
+        "name": "AppComponent",
+        "file": "src/app/app.component.ts",
+        "selector": "app-root",
+        "providers": [],
+        "templateUrl": [
+          "app.component.html"
+        ],
+        "styleUrls": [
+          "app.component.scss"
+        ],
+        "__raw": [
+          {
+            "kind": 253,
+            "pos": 56,
+            "end": 79,
+            "flags": 0,
+            "name": {
+              "kind": 69,
+              "pos": 56,
+              "end": 67,
+              "flags": 0,
+              "text": "selector"
+            },
+            "initializer": {
+              "kind": 9,
+              "pos": 68,
+              "end": 79,
+              "flags": 0,
+              "text": "app-root"
+            }
+          },
+          {
+            "kind": 253,
+            "pos": 80,
+            "end": 118,
+            "flags": 0,
+            "name": {
+              "kind": 69,
+              "pos": 80,
+              "end": 94,
+              "flags": 0,
+              "text": "templateUrl"
+            },
+            "initializer": {
+              "kind": 9,
+              "pos": 95,
+              "end": 118,
+              "flags": 0,
+              "text": "./app.component.html"
+            }
+          },
+          {
+            "kind": 253,
+            "pos": 119,
+            "end": 157,
+            "flags": 0,
+            "name": {
+              "kind": 69,
+              "pos": 119,
+              "end": 131,
+              "flags": 0,
+              "text": "styleUrls"
+            },
+            "initializer": {
+              "kind": 170,
+              "pos": 132,
+              "end": 157,
+              "flags": 0,
+              "elements": [
+                {
+                  "kind": 9,
+                  "pos": 134,
+                  "end": 156,
+                  "flags": 0,
+                  "text": "./app.component.scss"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "QuestionsComponent"
+      },
+      {
+        "name": "QuestionsListComponent"
+      },
+      {
+        "name": "HomeComponent"
+      },
+      {
+        "name": "QuestionDetailsComponent"
+      },
+      {
+        "name": "NewQuestionComponent"
+      },
+      {
+        "name": "QuestionComponent"
+      },
+      {
+        "name": "QuestionsListitemComponent"
+      }
+    ],
+    "imports": [
+      {
+        "name": "BrowserModule"
+      },
+      {
+        "name": "FormsModule"
+      },
+      {
+        "name": "HttpModule"
+      },
+      {
+        "ns": "RouterModule",
+        "name": "RouterModule.forRoot(args)"
+      },
+      {
+        "ns": "AngularFireModule",
+        "name": "AngularFireModule.initializeApp(args)"
+      },
+      {
+        "ns": "MaterialModule",
+        "name": "MaterialModule.forRoot()"
+      }
+    ],
+    "exports": [],
+    "bootstrap": [
+      {
+        "name": "AppComponent"
+      }
+    ],
+    "__raw": [
+      {
+        "kind": 253,
+        "pos": 1169,
+        "end": 1390,
+        "flags": 0,
+        "name": {
+          "kind": 69,
+          "pos": 1169,
+          "end": 1184,
+          "flags": 0,
+          "text": "declarations"
+        },
+        "initializer": {
+          "kind": 170,
+          "pos": 1185,
+          "end": 1390,
+          "flags": 0,
+          "multiLine": true,
+          "elements": [
+            {
+              "kind": 69,
+              "pos": 1187,
+              "end": 1204,
+              "flags": 0,
+              "text": "AppComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 1205,
+              "end": 1228,
+              "flags": 0,
+              "text": "QuestionsComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 1229,
+              "end": 1256,
+              "flags": 0,
+              "text": "QuestionsListComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 1257,
+              "end": 1275,
+              "flags": 0,
+              "text": "HomeComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 1276,
+              "end": 1305,
+              "flags": 0,
+              "text": "QuestionDetailsComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 1306,
+              "end": 1331,
+              "flags": 0,
+              "text": "NewQuestionComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 1332,
+              "end": 1354,
+              "flags": 0,
+              "text": "QuestionComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 1355,
+              "end": 1386,
+              "flags": 0,
+              "text": "QuestionsListitemComponent"
+            }
+          ]
+        }
+      },
+      {
+        "kind": 253,
+        "pos": 1391,
+        "end": 1574,
+        "flags": 0,
+        "name": {
+          "kind": 69,
+          "pos": 1391,
+          "end": 1401,
+          "flags": 0,
+          "text": "imports"
+        },
+        "initializer": {
+          "kind": 170,
+          "pos": 1402,
+          "end": 1574,
+          "flags": 0,
+          "multiLine": true,
+          "elements": [
+            {
+              "kind": 69,
+              "pos": 1404,
+              "end": 1422,
+              "flags": 0,
+              "text": "BrowserModule"
+            },
+            {
+              "kind": 69,
+              "pos": 1423,
+              "end": 1439,
+              "flags": 0,
+              "text": "FormsModule"
+            },
+            {
+              "kind": 69,
+              "pos": 1440,
+              "end": 1455,
+              "flags": 0,
+              "text": "HttpModule"
+            },
+            {
+              "kind": 174,
+              "pos": 1456,
+              "end": 1495,
+              "flags": 0,
+              "expression": {
+                "kind": 172,
+                "pos": 1456,
+                "end": 1481,
+                "flags": 0,
+                "expression": {
+                  "kind": 69,
+                  "pos": 1456,
+                  "end": 1473,
+                  "flags": 0,
+                  "text": "RouterModule"
+                },
+                "name": {
+                  "kind": 69,
+                  "pos": 1474,
+                  "end": 1481,
+                  "flags": 0,
+                  "text": "forRoot"
+                }
+              },
+              "arguments": [
+                {
+                  "kind": 69,
+                  "pos": 1482,
+                  "end": 1494,
+                  "flags": 0,
+                  "text": "routerConfig"
+                }
+              ]
+            },
+            {
+              "kind": 174,
+              "pos": 1496,
+              "end": 1540,
+              "flags": 0,
+              "expression": {
+                "kind": 172,
+                "pos": 1496,
+                "end": 1532,
+                "flags": 0,
+                "expression": {
+                  "kind": 69,
+                  "pos": 1496,
+                  "end": 1518,
+                  "flags": 0,
+                  "text": "AngularFireModule"
+                },
+                "name": {
+                  "kind": 69,
+                  "pos": 1519,
+                  "end": 1532,
+                  "flags": 0,
+                  "text": "initializeApp"
+                }
+              },
+              "arguments": [
+                {
+                  "kind": 69,
+                  "pos": 1533,
+                  "end": 1539,
+                  "flags": 0,
+                  "text": "config"
+                }
+              ]
+            },
+            {
+              "kind": 174,
+              "pos": 1541,
+              "end": 1570,
+              "flags": 0,
+              "expression": {
+                "kind": 172,
+                "pos": 1541,
+                "end": 1568,
+                "flags": 0,
+                "expression": {
+                  "kind": 69,
+                  "pos": 1541,
+                  "end": 1560,
+                  "flags": 0,
+                  "text": "MaterialModule"
+                },
+                "name": {
+                  "kind": 69,
+                  "pos": 1561,
+                  "end": 1568,
+                  "flags": 0,
+                  "text": "forRoot"
+                }
+              },
+              "arguments": []
+            }
+          ]
+        }
+      },
+      {
+        "kind": 253,
+        "pos": 1575,
+        "end": 1607,
+        "flags": 0,
+        "name": {
+          "kind": 69,
+          "pos": 1575,
+          "end": 1587,
+          "flags": 0,
+          "text": "providers"
+        },
+        "initializer": {
+          "kind": 170,
+          "pos": 1588,
+          "end": 1607,
+          "flags": 0,
+          "elements": [
+            {
+              "kind": 69,
+              "pos": 1590,
+              "end": 1606,
+              "flags": 0,
+              "text": "QuestionsService"
+            }
+          ]
+        }
+      },
+      {
+        "kind": 253,
+        "pos": 1608,
+        "end": 1636,
+        "flags": 0,
+        "name": {
+          "kind": 69,
+          "pos": 1608,
+          "end": 1620,
+          "flags": 0,
+          "text": "bootstrap"
+        },
+        "initializer": {
+          "kind": 170,
+          "pos": 1621,
+          "end": 1636,
+          "flags": 0,
+          "elements": [
+            {
+              "kind": 69,
+              "pos": 1623,
+              "end": 1635,
+              "flags": 0,
+              "text": "AppComponent"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
