@@ -14,21 +14,12 @@ export const routerConfig : Route[] = [
             {
                 path: ':id',
                 children: [
-                    {
-                        path: '',
-                        component: QuestionDetailsComponent
-                    },
-                    {
-                        path: 'new',
-                        component: NewQuestionComponent
-                    }
+                    { path: '', component: QuestionDetailsComponent},
+                    { path: 'new', component: NewQuestionComponent}
                 ]
             },
-            {
-                path: '',
-                component: HomeComponent
-            },
-            { path:'**',redirectTo: 'questions', pathMatch: "Full"}
+            { path: '', component: HomeComponent},
+            { path:'**',redirectTo: 'home', pathMatch: "full"}
         ]
     }
     /*

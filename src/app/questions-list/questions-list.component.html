@@ -1,4 +1,6 @@
-<p>Number of questions:{{questions?.length}}</p>
+<p>Questions-List Component:{{questions?.length}}</p>
+<input type="text" placeholder="search" (keyup)="search(searchInput.value)" #searchInput> 
+
 <ul>
   <li *ngFor="let question of questions">
     <questions-listitem [question]="question"></questions-listitem>

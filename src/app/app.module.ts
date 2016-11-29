@@ -19,6 +19,10 @@ import { QuestionDetailsComponent } from './question-details/question-details.co
 import { NewQuestionComponent } from './new-question/new-question.component';
 import { QuestionComponent } from './question/question.component';
 import { QuestionsListitemComponent } from './questions-listitem/questions-listitem.component';
+import { QuestionsSearchComponent } from './questions-search/questions-search.component';
+import { TopMenuComponent } from './top-menu/top-menu.component';
+
+import { CarouselModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,9 @@ import { QuestionsListitemComponent } from './questions-listitem/questions-listi
     QuestionDetailsComponent,
     NewQuestionComponent,
     QuestionComponent,
-    QuestionsListitemComponent
+    QuestionsListitemComponent,
+    QuestionsSearchComponent,
+    TopMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,8 @@ import { QuestionsListitemComponent } from './questions-listitem/questions-listi
     HttpModule,
     RouterModule.forRoot(routerConfig),
     AngularFireModule.initializeApp(config),
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    CarouselModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

@@ -9,9 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class QuestionsListComponent implements OnInit {
 
   @Input() questions: Question[];
+  //filtered: Question[];
   constructor() { }
 
   ngOnInit() {
   }
-
+/*
+  search(term:string){
+    this.filtered = this.questions.filter( q => q.title.includes(term));
+  }
+*/
 }

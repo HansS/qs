@@ -10,14 +10,25 @@ import { Component, OnInit } from '@angular/core';
 export class QuestionsComponent implements OnInit {
 
   questions: Question[];
+  //allQuestions: Question[];
+  //filtered: Question[];
   constructor(private service: QuestionsService) { }
 
   ngOnInit() {
 
     this.service.allQuestions()
       .do(console.log)
-      .subscribe(questions => this.questions = questions);
+      .subscribe(qs => this.questions = qs);
+
+      //.subscribe(questions => this.allQuestions = this.filtered = questions);
+      
+      //.map(Question.fromJsonList);
+
 
   }
-
+/*
+  search(term:string){
+    this.allQuestions.filter( q => q.title.includes(term));
+  }
+*/
 }
