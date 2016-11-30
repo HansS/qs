@@ -19,7 +19,7 @@ const questionsRef = database().ref('questions');
 const answersRef = database().ref('answers');
 
 var quiz_questions = [];
-var question_answers = [];
+//var question_answers = [];
 
 
 // create quizzes

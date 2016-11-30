@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { QuestionsService } from './../questions/questions.service';
+import { Question } from './../question/question.model';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'home',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  allQuestions: Question[];
+    filtered: Question[];
 
-  ngOnInit() {
+  constructor(private service: QuestionsService) {
+
+
   }
 
+  ngOnInit() {
+      this.service.allQuestions()
+          .do(console.log)
+          .subscribe(
+              questions => this.allQuestions = this.filtered = questions
+          );
+
+  }
+
+    search(search:string) {
+
+        this.filtered = this.allQuestions.filter(question => question.title.includes(search) );
+
+    }
 }

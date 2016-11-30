@@ -23,6 +23,11 @@ import { QuestionsSearchComponent } from './questions-search/questions-search.co
 import { TopMenuComponent } from './top-menu/top-menu.component';
 
 import { CarouselModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { QuizzesComponent } from './quizzes/quizzes.component';
+import { QuizDetailComponent } from './quiz-detail/quiz-detail.component';
+import { EditQuestionComponent } from './edit-question/edit-question.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { CarouselModule } from 'ng2-bootstrap/ng2-bootstrap';
     QuestionComponent,
     QuestionsListitemComponent,
     QuestionsSearchComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    QuizzesComponent,
+    QuizDetailComponent,
+    EditQuestionComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

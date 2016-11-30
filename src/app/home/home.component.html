@@ -1,3 +1,11 @@
-<p>
-  Home Component Content
-</p>
+<h2>All Questions</h2>
+
+<h4>Total Questions: {{questions?.length}}</h4>
+
+<input class="search-bar" placeholder="Search"(keyup)="search(input.value)" #input>
+
+<div class="lessons-list-container v-h-center-block-parent">
+
+    <questions-list *ngIf="filtered" [questions]="filtered"></questions-list>
+
+</div>
