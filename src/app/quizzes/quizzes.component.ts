@@ -1,3 +1,6 @@
+import { Quiz } from './../quiz-detail/quiz.model';
+import { Observable } from 'rxjs/Rx';
+import { QuizzesService } from './quizzes.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizzesComponent implements OnInit {
 
-  constructor() { }
+  quizzes$: Observable<Quiz[]>;
+  constructor(private service: QuizzesService) { }
 
   ngOnInit() {
+    this.quizzes$ = this.service.findAllQuizzes();
   }
 
 }

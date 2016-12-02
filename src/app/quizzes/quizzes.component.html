@@ -1,3 +1,17 @@
-<p>
-  quizzes works!
-</p>
+
+<table class="courses-list card card-strong">
+    <tr class="course-summary" *ngFor="let quiz of (quizzes$ | async)">
+        <td>
+            <img class="lesson-logo"
+                 src="https://material.angularjs.org/latest/img/icons/angular-logo.svg">
+        </td>
+        <td class="description">
+            {{quiz.title}}
+        </td>
+        <td>
+            <button [routerLink]="quiz.titleUrl">View</button>
+        </td>
+    </tr>
+</table>
+
+<router-outlet></router-outlet>

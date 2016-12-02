@@ -10,12 +10,17 @@ export class Question {
     }
 
 
-
+    // class level
     static fromJsonList(array): Question[] {
-        return array.map(qs => Question.fromJson(qs));
+        //return array.map(qs => Question.fromJson(qs));
+        return array.map(Question.fromJson);
+
     }
+
+    // class level
     static fromJson({$key, number, title, category, level}): Question {
         return new Question($key, number, title, category, level);
     }
+
 }
 

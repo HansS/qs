@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
       this.service.allQuestions()
-          .do(console.log)
+          //.do(console.log)
           .subscribe(
               questions => this.allQuestions = this.filtered = questions
           );

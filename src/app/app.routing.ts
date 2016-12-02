@@ -19,15 +19,15 @@ export const routerConfig : Route[] = [
         path: 'quizzes',
         children: [
             {
-                path: ':id',
+                path: ':titleUrl',
                 children: [
                     {
                         path: '',
                         component: QuizDetailComponent
                     },
                     {
-                        path: 'new',
-                        component: NewQuestionComponent
+                        path: 'questions/:titleUrl',
+                        component: QuestionsComponent
                     }
                 ]
             },

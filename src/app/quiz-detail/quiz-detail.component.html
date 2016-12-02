@@ -1,3 +1,11 @@
-<p>
-  quiz-detail works!
-</p>
+<table class="courses-list card card-strong">
+    <tr class="course-summary" *ngFor="let quiz of (quiz$ | async)">
+
+        <td class="description">
+            {{quiz.title}}
+        </td>
+        <td>
+            <button [routerLink]="quiz.titleUrl">questions</button>
+        </td>
+    </tr>
+</table>

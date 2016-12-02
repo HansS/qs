@@ -21,6 +21,7 @@ import { QuestionComponent } from './question/question.component';
 import { QuestionsListitemComponent } from './questions-listitem/questions-listitem.component';
 import { QuestionsSearchComponent } from './questions-search/questions-search.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
+import { QuizzesService } from './quizzes/quizzes.service';
 
 import { CarouselModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { QuizzesComponent } from './quizzes/quizzes.component';
@@ -28,6 +29,7 @@ import { QuizDetailComponent } from './quiz-detail/quiz-detail.component';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { RegisterComponent } from './register/register.component';
     QuizDetailComponent,
     EditQuestionComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    QuizQuestionsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import { RegisterComponent } from './register/register.component';
     MaterialModule.forRoot(),
     CarouselModule
   ],
-  providers: [QuestionsService],
+  providers: [QuestionsService, QuizzesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

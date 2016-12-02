@@ -1,1 +1,11 @@
-<p>Questions Component</p>
+<div class="lessons-list-container v-h-center-block-parent">
+
+    <ul>
+        <li *ngFor="let question of questions">
+            {{question.title}}
+        </li>
+    </ul>
+
+</div>
+
+<router-outlet></router-outlet>
