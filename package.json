@@ -32,7 +32,8 @@
   "devDependencies": {
     "@angular/compiler-cli": "2.2.1",
     "@types/jasmine": "2.5.38",
-    "@types/node": "^6.0.42",
+    "@types/jquery": "^2.0.34",
+    "@types/node": "^6.0.51",
     "angular-cli": "1.0.0-beta.21",
     "codelyzer": "~1.0.0-beta.3",
     "jasmine-core": "2.5.2",

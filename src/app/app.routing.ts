@@ -1,3 +1,4 @@
+import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
@@ -23,11 +24,7 @@ export const routerConfig : Route[] = [
                 children: [
                     {
                         path: '',
-                        component: QuizDetailComponent
-                    },
-                    {
-                        path: 'questions/:titleUrl',
-                        component: QuestionsComponent
+                        component: QuizQuestionsComponent
                     }
                 ]
             },

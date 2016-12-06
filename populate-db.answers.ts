@@ -16,97 +16,65 @@ const quizzesRef = database().ref('quizzes');
 
 const questionsRef = database().ref('questions');
 
-const answersRef = database().ref('answers');
+//const answersRef = database().ref('answers');
 
-var quiz_questions = [];
-//var question_answers = [];
-
-
-// create quizzes
-
-dbData.quizzes.forEach(function(quiz) {
-
-    const quizRef = quizzesRef.push({
-        title: quiz.title,
-        category: quiz.category,
-        level: quiz.level
-    });
+//var quiz_questions = [];
 
 
+//const coursesRef = database().ref('courses');
+//const lessonsRef = database().ref('lessons');
 
 
-    // create questions
-    quiz.questions.forEach(question => {
-        console.log("question:", question.title);
-        const questionRef = questionsRef.push({
-            number: question.number,
-            title: question.title,
-            description: question.description,
-            category: question.category,
-            level: question.level
-        });
+function slugify(text)
+{
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
 
-        // create quiz_questions list
-        //quiz_questions.push(questionRef.key);
-        //console.log('create quiz_questions',quiz_questions);
-        console.log(questionRef.key);
-        //console.log('question_answers',question_answers);
-        // create association question_answers
+dbData.quizzes.forEach( q => {
 
-    // for each quiz question
+  console.log('adding quiz', q.url);
 
-    // create association quizquestions
-    const association = database().ref('question_answers');
-    const question_answers = association.child(questionRef.key);
+  const quizRef = quizzesRef.push({
+      id: q.id,
+      title: q.title,
+      url: slugify(q.title),
+      description: q.description,
+      category: q.category,
+      level: q.level
+  });
 
-    //console.log('question_answers',question_answers);
-/*
-    question_answers.forEach(questionKey => {
-        console.log('adding ansers keys to question_answers ');
-        const questionanswerAssociation = quizquestions.child(questionKey);
-        questionanswerAssociation.set(true);
-    });
-*/
-        // empty answer keys for this question
-        //question_answers.child = null;
+  let quiz_questions_keys = [];
 
-        // create answers
-        question.answers.forEach(answer => {
-            console.log('answer:', answer.title);
-            const answerRef = answersRef.push({
-                title: answer.title,
-                description: answer.description,
-                questionKey: questionRef.key
-            });
-            console.log('answerRef.Key:', answerRef.key);
-            // create quiz_questions list
-            //console.log('answerRef.key',answerRef.key);
-            question_answers.push(answerRef.key);
+  q.questions.forEach((question:any) =>  {
+
+    console.log('adding question ', question.url);
+
+    quiz_questions_keys.push(questionsRef.push({
+        number: question.number,
+        title: question.title,
+        description: question.description,
+        answers: question.answers,
+        quizId: quizRef.key
+      }).key);
+
+  });
 
 
-        });// for each answer
+  const quiz_questions_join = database().ref('quiz_questions');
+  const quiz_questions_join_Keys = quiz_questions_join.child(quizRef.key);
+
+  quiz_questions_keys.forEach(questionKey => {
+    const quiz_question_join = quiz_questions_join_Keys.child(questionKey);
+    quiz_question_join.set(true);
+  }); 
 
 
-
-    }); // for each question
-
-
-    // for each quiz question
-
-    // create association quizquestions
-    const association = database().ref('quiz_questions');
-    const quizquestions = association.child(quizRef.key);
-
-    quiz_questions.forEach(questionKey => {
-        console.log('quiz_questions ');
-        const questionquizAssociation = quizquestions.child(quizRef.key);
-        questionquizAssociation.set(true);
-    });
-
-
-
-}); // for each quiz
-
+});
 
 
 

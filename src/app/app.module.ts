@@ -30,6 +30,7 @@ import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.component';
+import { QuizzesListComponent } from './quizzes-list/quizzes-list.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.componen
     EditQuestionComponent,
     LoginComponent,
     RegisterComponent,
-    QuizQuestionsComponent
+    QuizQuestionsComponent,
+    QuizzesListComponent
   ],
   imports: [
     BrowserModule,
