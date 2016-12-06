@@ -1,11 +1,11 @@
-<h2>All Questions</h2>
+<h2>All Quizzzes</h2>
 
-<h4>Total Questions: {{questions?.length}}</h4>
+<h4>Total Quizzes: {{quizzes?.length}}</h4>
 
 <input class="search-bar" placeholder="Search"(keyup)="search(input.value)" #input>
 
 <div class="lessons-list-container v-h-center-block-parent">
 
-    <questions-list *ngIf="filtered" [questions]="filtered"></questions-list>
+    <quizzes-list *ngIf="filtered" [quizzes]="filtered"></quizzes-list>
 
 </div>

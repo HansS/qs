@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {AngularFireModule} from 'angularfire2';
 import {MaterialModule} from '@angular/material';
+
+import {Observable} from 'rxJs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
