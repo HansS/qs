@@ -1,11 +1,26 @@
-<table class="courses-list card card-strong">
-    <tr class="course-summary" *ngFor="let quiz of (quiz$ | async)">
 
-        <td class="description">
-            {{quiz.title}}
-        </td>
-        <td>
-            <button [routerLink]="quiz.titleUrl">questions</button>
-        </td>
-    </tr>
-</table>
+
+
+
+
+<div class="lessons-list-container v-h-center-block-parent">
+<h2>Questions:</h2>
+
+    <div class="nav-bar">
+        <button (click)="previous()">Previous Page</button>
+        <button (click)="next()">Next Page</button>
+    </div>
+
+    <ul>
+        <li *ngFor="let question of (questions$  | async )">
+            {{ question.title}}
+        </li>
+    </ul>
+
+    <div class="tools-bar">
+        <button routerLink="new" [queryParams]="{quizId: (quiz$ | async)?.$key }">
+            New Question
+        </button>
+    </div>
+
+</div>

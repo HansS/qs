@@ -14,8 +14,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizDetailComponent implements OnInit {
 
+  quizzes$: Observable<Quiz[]>;
   quiz$: Observable<Quiz[]>;
+
   questions$: Observable<Question[]>;
+  questions: Question[];
+  url:string;
   constructor(private service: QuizzesService, private route: ActivatedRoute) { 
 
   }
@@ -23,14 +27,52 @@ export class QuizDetailComponent implements OnInit {
 
   ngOnInit() {
 
-    const titleUrl:string = this.route.snapshot.params['titleUrl'];
+        this.url = this.route.snapshot.params['url'];
 
-    this.quiz$ = this.service.findQuizByTitleUrl(titleUrl)
-      .do(console.log);
+        //this.quiz$ = this.service.findQuizByUrl(this.url);
 
-      
-    
-  
+        this.questions$ = this.service.findAllQuestionsForQuiz(this.url,);
+        
+            //.do(console.log)
+            //.subscribe();
+
+        //this.questions$.subscribe(questions => this.questions = questions);
+
+        //this.url = this.route.snapshot.params['url'];
+
+        console.log('url:',this.url);
+    //this.quiz$ = this.service.findQuizByUrl(this.url)
+    //  .do(console.log);
   }
+
+      next() {
+/*
+        this.service.loadNextPage(
+            this.url,
+            this.lessons[this.lessons.length - 1].$key,
+            3
+        )
+        .subscribe(lessons => this.lessons = lessons);
+
+*/
+    }
+
+
+    previous() {
+/*
+        this.coursesService.loadPreviousPage(
+            this.courseUrl,
+            this.lessons[0].$key,
+            3
+        )
+            .subscribe(lessons => this.lessons = lessons);
+*/
+    }
+
+    navigateToQuestion(lesson:Question) {
+
+    //    this.router.navigate(['lessons', lesson.url]);
+
+    }
 
 }

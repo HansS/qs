@@ -1,11 +1,11 @@
 export class Quiz{
 
-    constructor(private $key:string,
-                private title: string,
-                private titleUrl: string,
-                private number: number,
-                private category: string,
-                private level: string){}
+    constructor(public $key:string,
+                public title: string,
+                public url: string,
+                public number: number,
+                public category: string,
+                public level: string){}
 
 
     // class level
@@ -16,8 +16,8 @@ export class Quiz{
     }
 
     // class level
-    static fromJson({$key, title, titleUrl, number, category, level}): Quiz {
-        return new Quiz($key,  title, titleUrl, number, category, level);
+    static fromJson({$key, title, url, number, category, level}): Quiz {
+        return new Quiz($key,  title, url, number, category, level);
     }
 
 }

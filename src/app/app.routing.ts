@@ -20,11 +20,15 @@ export const routerConfig : Route[] = [
         path: 'quizzes',
         children: [
             {
-                path: ':titleUrl',
+                path: ':url',
                 children: [
                     {
                         path: '',
-                        component: QuizQuestionsComponent
+                        component: QuizDetailComponent
+                    },
+                    {
+                        path: 'new',
+                        component: NewQuestionComponent
                     }
                 ]
             },
@@ -61,12 +65,12 @@ export const routerConfig : Route[] = [
     },
     {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'quizzes',
         pathMatch: 'full'
     },
     {
         path: '**',
-        redirectTo: 'home'
+        redirectTo: 'quizzes'
     }
 ];
 
