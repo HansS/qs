@@ -4,19 +4,29 @@
 
 
 <div class="lessons-list-container v-h-center-block-parent">
-<h2>Questions:</h2>
+<!--
 
     <div class="nav-bar">
         <button (click)="previous()">Previous Page</button>
         <button (click)="next()">Next Page</button>
     </div>
-
+-->
     <ul>
         <li *ngFor="let question of (questions$  | async )">
-            {{ question.title}}
+            <md-card>
+                <md-card-title>{{ question.title}}</md-card-title>
+                <md-card-content>
+                    <md-radio-group>
+                        <md-radio-button *ngFor="let answer of question.answers">
+                            <h3>{{answer.title}}</h3>
+                        </md-radio-button>
+                    </md-radio-group>
+                </md-card-content>
+            </md-card>
+            
         </li>
     </ul>
-
+<!--
     <div class="tools-bar">
         <button routerLink="new" [queryParams]="{quizId: (quiz$ | async)?.$key }">
             New Question
@@ -24,3 +34,4 @@
     </div>
 
 </div>
+-->

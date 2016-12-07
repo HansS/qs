@@ -6,6 +6,8 @@ import { Question } from './../question/question.model';
 import { Observable } from 'rxjs/Rx';
 import { QuizzesService } from './../quizzes/quizzes.service';
 import { Component, OnInit } from '@angular/core';
+import {MdList, MdListItem, MdRadioGroup,MdRadioButton,MdCard,MdCardTitle,MdCardContent ,MdCardHeader,MdCardFooter,MdCardActions} from '@angular/material';
+
 
 @Component({
   selector: 'quiz-detail',
