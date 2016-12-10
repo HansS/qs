@@ -21,9 +21,9 @@
     <ul>
 -->
     <ul>
-        <li *ngFor="let question of (questions$  | async )">
+        <li *ngFor="let question of (questionsOne$ | async )">
             <md-card>
-                <md-card-title>{{ question.title}}</md-card-title>
+                <md-card-title>{{question.number}}-{{ question.title}}</md-card-title>
                 <md-card-content>
                     <md-radio-group>
                         <md-radio-button *ngFor="let answer of question.answers">

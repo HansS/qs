@@ -24,9 +24,11 @@ export class QuizDetailComponent implements OnInit {
 
     // questions
     questions$: Observable<Question[]>;
-    
+    questionsOne$: Observable<Question[]>;
+
     questions: Question[];
-    currentQuestion:Question;
+    currentQuestion: Question;
+    currentPosition = 0;
 
     constructor(private service: QuizzesService,
         private route: ActivatedRoute,
@@ -39,26 +41,17 @@ export class QuizDetailComponent implements OnInit {
 
         this.url = this.route.snapshot.params['url'];
 
-       // get quiz title for quiz
-       /*
-        this.service.findQuizByUrlTakeOne(this.url)
-            .subscribe(qzs => this.quizzes = Quiz.fromJsonList(qzs));
-      */
+        this.questions$ = this.service.loadFirstQuestionPageAll(this.url);
+        this.questionsOne$ = this.questions$.map(qs => qs.slice(0, 1));
 
-        // get first 2 questions for quiz -> save first to currentQuestion 
-        this.questions$ = this.service.loadFirstQuestionPage(this.url,1);
-        this.questions$.subscribe(qs => {
-            this.questions = qs
-            //this.currentQuestion = qs[0];
-        });
+        this.questions$.subscribe(qs => { this.questions = qs });
 
     }
 
     next() {
-        
-            this.service.loadNextQuestionPage(this.url ,this.questions[0].$key,1)
-                .subscribe(qs => this.questions = qs);
 
+        this.currentPosition++;
+        this.questionsOne$ = this.questions$.map(qs => qs.slice(this.currentPosition, this.currentPosition + 1));
 
     }
 

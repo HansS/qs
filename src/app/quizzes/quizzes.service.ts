@@ -1,101 +1,119 @@
 import { Question } from './../question/question.model';
 import { Quiz } from './../quiz-detail/quiz.model';
-import {Injectable} from '@angular/core';
-import {AngularFireDatabase} from "angularfire2";
-import {Observable} from "rxjs/Rx";
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from "angularfire2";
+import { Observable } from "rxjs/Rx";
 
-import {FirebaseListFactoryOpts} from "angularfire2/interfaces";
+import { FirebaseListFactoryOpts } from "angularfire2/interfaces";
 
 @Injectable()
 export class QuizzesService {
 
 
     //
-    constructor(private db:AngularFireDatabase) { }
+    constructor(private db: AngularFireDatabase) { }
 
-    findAllQuizzes():Observable<Quiz[]> {
+    findAllQuizzes(): Observable<Quiz[]> {
         return this.db.list('quizzes').map(Quiz.fromJsonList);
     }
 
-    findQuizByUrlTakeOne(url:string): Observable<any> {
+    findQuizByUrlTakeOne(url: string): Observable<any> {
         return this.db.list('quizzes', {
             query: {
                 orderByChild: 'url',
                 equalTo: url
             }
         })
-        .take(1 )
+            .take(1)
     }
 
-    findQuizByUrl(url:string): Observable<Question> {
+    findQuizByUrl(url: string): Observable<Question> {
         return this.db.list('quizzes', {
             query: {
                 orderByChild: 'url',
                 equalTo: url
             }
         })
-        .map( results => results[0]);
+            .map(results => results[0]);
     }
 
 
-    findQuestionsKeysForQuiz(url:string, query: FirebaseListFactoryOpts = {}): Observable<string[]> {
+    findQuestionsKeysForQuiz(url: string, query: FirebaseListFactoryOpts = {}): Observable<string[]> {
 
         return this.findQuizByUrl(url)
-            .do(val => console.log('quiz',val))
+            .do(val => console.log('quiz', val))
             .filter(quiz => !!quiz)
-            .switchMap(quiz => this.db.list(`quiz_questions/${quiz.$key}`,query))
-            .map( lspc => lspc.map(lpc => lpc.$key) );
+            .switchMap(quiz => this.db.list(`quiz_questions/${quiz.$key}`, query))
+            .map(lspc => lspc.map(lpc => lpc.$key));
     }
 
 
-    findQuestionsForQuestionKeys(questionKeys$: Observable<string[]>) :Observable<Question[]> {
+    findQuestionsForQuestionKeys(questionKeys$: Observable<string[]>): Observable<Question[]> {
 
         return questionKeys$
-            .map(lspc => lspc.map(questionKey => this.db.object('questions/' + questionKey)) )
-            .flatMap(fbojs => Observable.combineLatest(fbojs) )
+            .map(lspc => lspc.map(questionKey => this.db.object('questions/' + questionKey)))
+            .flatMap(fbojs => Observable.combineLatest(fbojs))
 
     }
 
 
-    findAllQuestionsForQuiz(url:string):Observable<Question[]> {
+    findAllQuestionsForQuiz(url: string): Observable<Question[]> {
         return this.findQuestionsForQuestionKeys(this.findQuestionsKeysForQuiz(url));
     }
 
 
-    loadFirstQuestionPage(url:string, pageSize:number): Observable<Question[]> {
-
-        const firstPageQuestionKeys$ = this.findQuestionsKeysForQuiz(url,
-            {
-                query: {
-                    limitToFirst:pageSize
-                }
-            });
-
-        return this.findQuestionsForQuestionKeys(firstPageQuestionKeys$);
-    }
-
-    loadFirstQuestion(quizUrl:string): Observable<Question[]> {
+    loadFirstQuestionPage(quizUrl: string, pageSize: number): Observable<Question[]> {
 
         const firstPageQuestionKeys$ = this.findQuestionsKeysForQuiz(quizUrl,
             {
                 query: {
-                    limitToFirst:2
+                    limitToFirst: pageSize
+                }
+            });
+
+        return this.findQuestionsForQuestionKeys(firstPageQuestionKeys$);
+    }
+    loadFirstQuestionPageAll(quizUrl: string): Observable<Question[]> {
+
+        const firstPageQuestionKeys$ = this.findQuestionsKeysForQuiz(quizUrl);
+        return this.findQuestionsForQuestionKeys(firstPageQuestionKeys$);
+
+    }
+
+    loadFirstQuestion(quizUrl: string): Observable<Question[]> {
+
+        const firstPageQuestionKeys$ = this.findQuestionsKeysForQuiz(quizUrl,
+            {
+                query: {
+                    limitToFirst: 2
                 }
             });
 
         return this.findQuestionsForQuestionKeys(firstPageQuestionKeys$);
     }
 
+    loadQuestionsForQuiz(quizUrl: string) {
 
+        const questionKeys$ = this.findQuestionsKeysForQuiz(quizUrl);
+        /*
+        {
+            query: {
+                limitToFirst:2
+            }
+        });
+        */
 
-    loadNextQuestion(quizUrl:string, questionKey:string): Observable<Question[]>{
+        return this.findQuestionsForQuestionKeys(questionKeys$);
+    }
+
+    loadNextQuestion(quizUrl: string, questionKey: string): Observable<Question[]> {
 
         const questionKeys$ = this.findQuestionsKeysForQuiz(quizUrl,
             {
                 query: {
                     orderByKey: true,
                     startAt: questionKey,
-                    limitToFirst:1 + 1
+                    limitToFirst: 1 + 1
                 }
             });
 
@@ -106,14 +124,14 @@ export class QuizzesService {
 
     }
 
-    loadNextQuestionPage(url:string,questionKey:string, pageSize:number): Observable<Question[]> {
+    loadNextQuestionPage(url: string, questionKey: string, pageSize: number): Observable<Question[]> {
 
         const questionKeys$ = this.findQuestionsKeysForQuiz(url,
             {
                 query: {
                     orderByKey: true,
                     startAt: questionKey,
-                    limitToFirst:pageSize + 1
+                    limitToFirst: pageSize + 1
                 }
             });
 
@@ -123,8 +141,8 @@ export class QuizzesService {
 
     }
 
-    loadPreviousQuestionPage(url:string,
-                     questionKey:string, pageSize:number): Observable<Question[]> {
+    loadPreviousQuestionPage(url: string,
+        questionKey: string, pageSize: number): Observable<Question[]> {
 
 
         const questionKeys$ = this.findQuestionsKeysForQuiz(url,
@@ -132,7 +150,7 @@ export class QuizzesService {
                 query: {
                     orderByKey: true,
                     endAt: questionKey,
-                    limitToLast:pageSize + 1
+                    limitToLast: pageSize + 1
                 }
             });
 
@@ -141,7 +159,7 @@ export class QuizzesService {
 
     }
 
-    loadPreviousQuestion(quizUrl:string,questionKey:string): Observable<Question[]> {
+    loadPreviousQuestion(quizUrl: string, questionKey: string): Observable<Question[]> {
 
 
         const questionKeys$ = this.findQuestionsKeysForQuiz(quizUrl,
@@ -149,7 +167,7 @@ export class QuizzesService {
                 query: {
                     orderByKey: true,
                     endAt: questionKey,
-                    limitToLast:1 + 1
+                    limitToLast: 1 + 1
                 }
             });
 
