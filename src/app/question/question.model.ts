@@ -1,18 +1,18 @@
-//import { Question } from './question.model';
+
 export class Question {
 
     constructor(public $key: string,
-                public number: number,
-                public title: string,
-                public category: string,
-                public level: string) {
+        public number: number,
+        public title: string,
+        public category: string,
+        public level: string) {
 
     }
 
 
     // class level
     static fromJsonList(array): Question[] {
-        //return array.map(qs => Question.fromJson(qs));
+
         return array.map(Question.fromJson);
 
     }

@@ -1,79 +1,81 @@
+
 import { Quiz } from './quiz.model';
 
 import { routerConfig } from './../app.routing';
-import { Route, ActivatedRoute } from '@angular/router';
+import { Route, ActivatedRoute, Router } from '@angular/router';
 import { Question } from './../question/question.model';
 import { Observable } from 'rxjs/Rx';
 import { QuizzesService } from './../quizzes/quizzes.service';
 import { Component, OnInit } from '@angular/core';
-import {MdList, MdListItem, MdRadioGroup,MdRadioButton,MdCard,MdCardTitle,MdCardContent ,MdCardHeader,MdCardFooter,MdCardActions} from '@angular/material';
+import { MdList, MdListItem, MdRadioGroup, MdRadioButton, MdCard, MdCardTitle, MdCardContent, MdCardHeader, MdCardFooter, MdCardActions } from '@angular/material';
 
 
 @Component({
-  selector: 'quiz-detail',
-  templateUrl: './quiz-detail.component.html',
-  styleUrls: ['./quiz-detail.component.scss']
+    selector: 'quiz-detail',
+    templateUrl: './quiz-detail.component.html',
+    styleUrls: ['./quiz-detail.component.scss']
 })
 export class QuizDetailComponent implements OnInit {
+    // QuizzesService
+    quizzes$: Observable<Quiz[]>;
+    quiz$: Observable<Quiz>;
+    quizzes: Quiz[];
+    url: string;
 
-  quizzes$: Observable<Quiz[]>;
-  quiz$: Observable<Quiz[]>;
+    // questions
+    questions$: Observable<Question[]>;
+    
+    questions: Question[];
+    currentQuestion:Question;
 
-  questions$: Observable<Question[]>;
-  questions: Question[];
-  url:string;
-  constructor(private service: QuizzesService, private route: ActivatedRoute) { 
+    constructor(private service: QuizzesService,
+        private route: ActivatedRoute,
+        private router: Router) {
 
-  }
+    }
 
 
-  ngOnInit() {
+    ngOnInit() {
 
         this.url = this.route.snapshot.params['url'];
 
-        //this.quiz$ = this.service.findQuizByUrl(this.url);
+       // get quiz title for quiz
+       /*
+        this.service.findQuizByUrlTakeOne(this.url)
+            .subscribe(qzs => this.quizzes = Quiz.fromJsonList(qzs));
+      */
 
-        this.questions$ = this.service.findAllQuestionsForQuiz(this.url,);
+        // get first 2 questions for quiz -> save first to currentQuestion 
+        this.questions$ = this.service.loadFirstQuestionPage(this.url,1);
+        this.questions$.subscribe(qs => {
+            this.questions = qs
+            //this.currentQuestion = qs[0];
+        });
+
+    }
+
+    next() {
         
-            //.do(console.log)
-            //.subscribe();
+            this.service.loadNextQuestionPage(this.url ,this.questions[0].$key,1)
+                .subscribe(qs => this.questions = qs);
 
-        //this.questions$.subscribe(questions => this.questions = questions);
 
-        //this.url = this.route.snapshot.params['url'];
-
-        console.log('url:',this.url);
-    //this.quiz$ = this.service.findQuizByUrl(this.url)
-    //  .do(console.log);
-  }
-
-      next() {
-/*
-        this.service.loadNextPage(
-            this.url,
-            this.lessons[this.lessons.length - 1].$key,
-            3
-        )
-        .subscribe(lessons => this.lessons = lessons);
-
-*/
     }
 
 
     previous() {
-/*
-        this.coursesService.loadPreviousPage(
-            this.courseUrl,
-            this.lessons[0].$key,
-            3
+
+        this.service.loadPreviousQuestion(
+            this.url,
+            this.questions[1].$key
         )
-            .subscribe(lessons => this.lessons = lessons);
-*/
+            .subscribe(qs => this.questions = qs);
+
     }
 
-    navigateToQuestion(lesson:Question) {
+    navigateToQuestion(question: Question) {
 
-    //    this.router.navigate(['lessons', lesson.url]);
+        this.router.navigate(['questions', question.$key]);
 
     }
 
