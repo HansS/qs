@@ -1,25 +1,13 @@
 <div class="lessons-list-container v-h-center-block-parent">
 
     <h2 *ngFor="let quiz of quizzes">{{quiz.title}}</h2>
-
+    
     <div class="nav-bar">
         <button (click)="previous()">Previous Page</button>
         <button (click)="next()">Next Page</button>
     </div>
+{{currentPosition}}
 
-    <!--
-    <md-card>
-        <md-card-title>{{ currentQuestion.title}}</md-card-title>
-        <md-card-content>
-            <md-radio-group>
-                <md-radio-button *ngFor="let answer of currentQuestion.answers">
-                    <h3>{{answer.title}}</h3>
-                </md-radio-button>
-            </md-radio-group>
-        </md-card-content>
-    </md-card>
-    <ul>
--->
     <ul>
         <li *ngFor="let question of (questionsOne$ | async )">
             <md-card>

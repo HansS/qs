@@ -28,7 +28,7 @@ export class QuizDetailComponent implements OnInit {
 
     questions: Question[];
     currentQuestion: Question;
-    currentPosition = 0;
+    currentPosition = 1;
 
     constructor(private service: QuizzesService,
         private route: ActivatedRoute,
@@ -44,19 +44,19 @@ export class QuizDetailComponent implements OnInit {
         this.questions$ = this.service.loadFirstQuestionPageAll(this.url);
         this.questionsOne$ = this.questions$.map(qs => qs.slice(0, 1));
 
-        this.questions$.subscribe(qs => { this.questions = qs });
-
+        this.questions$.subscribe(qs => this.questions = qs);
+        console.log('questions:',this.questions);
     }
 
     next() {
 
         this.currentPosition++;
+        
         this.questionsOne$ = this.questions$.map(qs => qs.slice(this.currentPosition, this.currentPosition + 1));
 
     }
 
-
-    previous() {
+   previous() {
 
         this.service.loadPreviousQuestion(
             this.url,
