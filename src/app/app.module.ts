@@ -42,6 +42,7 @@ import {AuthService} from "./shared/security/auth.service";
 import {AuthGuard} from "./shared/security/auth.guard";
 import { authConfig } from './../environments/firebase.config';
 import {config} from '../environments/firebase.config';
+import { AnswerDetailsComponent } from './answer-details/answer-details.component';
 
 authConfig
 @NgModule({
@@ -62,7 +63,8 @@ authConfig
     LoginComponent,
     RegisterComponent,
     QuizQuestionsComponent,
-    QuizzesListComponent
+    QuizzesListComponent,
+    AnswerDetailsComponent
 
   ],
   imports: [
