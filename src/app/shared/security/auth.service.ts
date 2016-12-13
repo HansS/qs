@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 export class AuthService {
 
 
-  static UNKNOWN_USER = new AuthInfo(null);
+  static UNKNOWN_USER = new AuthInfo(null,'');
 
   authInfo$: BehaviorSubject<AuthInfo> = new BehaviorSubject<AuthInfo>(AuthService.UNKNOWN_USER);
 
@@ -42,7 +42,8 @@ export class AuthService {
 
         promise
             .then(res => {
-                    const authInfo = new AuthInfo(this.auth.getAuth().uid);
+                    
+                    const authInfo = new AuthInfo(this.auth.getAuth().uid,this.auth.getAuth().auth.displayName);
                     this.authInfo$.next(authInfo);
                     subject.next(res);
                     subject.complete();

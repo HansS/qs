@@ -11,7 +11,8 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   form:FormGroup;
-
+  email:string;
+  
   constructor(private fb:FormBuilder, private authService: AuthService,
                 private router:Router) {
 
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
   login() {
 
       const formValue = this.form.value;
+
 
       this.authService.login(formValue.email, formValue.password)
           .subscribe(
