@@ -3,36 +3,38 @@
     <h2 *ngFor="let quiz of quizzes">{{quiz.title}}</h2>
 
     <div class="nav-bar">
-        <button (click)="previous()">Previous Page</button>
-        <button (click)="next()">Next Page</button>
-        <button (click)="checkAnswer()">Check Answer</button>
+        <!--<button (click)="previous()">Previous Page</button> -->
+
     </div>
-    <div>Question:{{currentPosition}}</div>
-    <div>Score: {{scoreCount}}</div>
-<pre>
-{{ this.selectedAnswer | json }}
-</pre>
+    <div></div>
+    <div></div>
+
+    <!--<pre>{{ this.selectedAnswer | json }}</pre> -->
+
     <ul>
         <li *ngFor="let question of (questionsOne$ | async )">
             <md-card>
-                <md-card-title>{{question.number}}-{{ question.title}}</md-card-title>
+                <md-card-title>{{ question.title}}</md-card-title>
                 <md-card-content>
                     <table>
                         <thead>
-                            <td>Answer</td>
-                            <td></td>
+                            <td>Question:{{currentPosition}}</td>
+                            <td>Score: {{scoreCount}}</td>
                         </thead>
                         <tbody>
                             <tr *ngFor="let answer of question.answers; let idx = index">
-                                <td><input  [disabled]="selectedAnswer.checked" type="radio" name="answergroup" (change)="onSelectionChange(answer)" [checked]="(idx === 0)"
-                                        [value]="answer.title"></td>
+                                <td><input [disabled]="selectedAnswer.checked" type="radio" name="answergroup" (change)="onSelectionChange(answer)"
+                                        [checked]="(idx === 0)" [value]="answer.title"></td>
                                 <td>{{ answer.title }}</td>
                             </tr>
                         </tbody>
                     </table>
+                    <md-card-actions>
+                        <button (click)="next()">Next Page</button>
+                        <button (click)="checkAnswer()">Check Answer</button>
+                    </md-card-actions>
                 </md-card-content>
             </md-card>
-
         </li>
     </ul>
     <!--

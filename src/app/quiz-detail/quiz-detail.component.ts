@@ -8,7 +8,7 @@ import { Question } from './../question/question.model';
 import { Observable } from 'rxjs/Rx';
 import { QuizzesService } from './../quizzes/quizzes.service';
 import { Component, OnInit } from '@angular/core';
-import { MdList, MdListItem, MdRadioGroup, MdRadioButton, MdCard, MdCardTitle, MdCardContent, MdCardHeader, MdCardFooter, MdCardActions } from '@angular/material';
+import { MdList, MdListItem, MdRadioGroup, MdRadioButton, MdCard, MdCardTitle,MdCardSubtitle, MdCardContent, MdCardHeader, MdCardFooter, MdCardActions } from '@angular/material';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class QuizDetailComponent implements OnInit {
 
 
     // answers
-    selectedAnswer: Answer = new Answer('key','title',false,false);
+    selectedAnswer: Answer = new Answer('key', 'title', '', false);
     scoreCount = 0;
 
     constructor(private service: QuizzesService,
@@ -69,21 +69,28 @@ export class QuizDetailComponent implements OnInit {
         this.selectedAnswer = Object.assign({}, this.selectedAnswer, answer);
     }
 
-   checkAnswer(){
-       this.selectedAnswer.checked = true;
-       console.dir(this.selectedAnswer);
+    checkAnswer() {
+        this.selectedAnswer.checked = true;
+        console.dir(this.selectedAnswer);
 
-       if (this.selectedAnswer.isCorrect){
-           this.scoreCount++;
-       }
+        console.log('isCorrect:',this.selectedAnswer.isCorrect);
 
-   }
+        if (this.selectedAnswer.isCorrect === 'true' ) {
+            console.log(Boolean(this.selectedAnswer.isCorrect ));
+            this.scoreCount++;
+        }
+
+    }
 
     next() {
 
-        this.currentPosition++;
-        this.selectedAnswer = new Answer('key','title',false,false);
-        this.questionsOne$ = this.questions$.map(qs => qs.slice(this.currentPosition, this.currentPosition + 1));
+        if (this.currentPosition < 15) {
+
+            this.currentPosition++;
+            this.selectedAnswer = new Answer('key', 'title', '', false);
+            this.questionsOne$ = this.questions$.map(qs => qs.slice(this.currentPosition, this.currentPosition + 1));
+
+        }
 
     }
 

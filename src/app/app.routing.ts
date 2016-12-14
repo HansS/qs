@@ -65,12 +65,12 @@ export const routerConfig : Route[] = [
     },
     {
         path: '',
-        redirectTo: 'quizzes',
+        redirectTo: 'home',
         pathMatch: 'full'
     },
     {
         path: '**',
-        redirectTo: 'quizzes'
+        redirectTo: 'home'
     }
 ];
 
